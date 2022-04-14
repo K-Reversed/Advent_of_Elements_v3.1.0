@@ -5,7 +5,7 @@ import java.awt.Dimension;
  * @since 1.0
  */
 public class GUI extends JFrame {
-    private GameStates gamestates
+    private GameStates gamestates;
     /**
      * @param width The width of the GUI
      * @param height The height of the GUI
