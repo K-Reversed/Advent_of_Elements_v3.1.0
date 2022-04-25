@@ -16,7 +16,7 @@ import java.awt.*;
 
 /**
  * @author Kevin Jiang
- * @version 1.6
+ * @version 3.1.0
  * @since 1.0
  */
 public class Main extends Canvas{
