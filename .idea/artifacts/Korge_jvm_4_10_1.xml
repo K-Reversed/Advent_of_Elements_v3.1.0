@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Korge-jvm-4.10.1">
+    <output-path>$PROJECT_DIR$/Korge/build/libs</output-path>
+    <root id="archive" name="Korge-jvm-4.10.1.jar" />
+  </artifact>
+</component>
