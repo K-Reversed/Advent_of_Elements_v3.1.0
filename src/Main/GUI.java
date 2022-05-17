@@ -11,7 +11,6 @@ import java.awt.*;
  * @updated 3.1.0
  */
 public class GUI extends JPanel implements Runnable{
-    //private Others.GameStates gamestates;
 
     //Screen Settings
     private final int originalTileSize = 32;
@@ -92,5 +91,12 @@ public class GUI extends JPanel implements Runnable{
 
     public int getTileSize() {
         return tileSize;
+    }
+
+    public int gethMax() {
+        return hMax;
+    }
+    public int getvMax() {
+        return vMax;
     }
 }

@@ -24,7 +24,7 @@ public class Player extends Entity {
     public void setDefaultValues() {
         x = 100;
         y = 100;
-        velocity = 4;
+        velocity = 3;
         direction = ("idle left");
     }
 
@@ -40,6 +40,10 @@ public class Player extends Entity {
             idleL1 = spriteSheet.getSubimage(320, 0, spriteSize, spriteSize);
             left0 = spriteSheet.getSubimage(384, 0, spriteSize, spriteSize);
             left1 = spriteSheet.getSubimage(448, 0, spriteSize, spriteSize);
+            up0 = null;
+            up1 = null;
+            down0 = null;
+            down1 = null;
         } catch (IOException e) {e.printStackTrace();}
     }
 
