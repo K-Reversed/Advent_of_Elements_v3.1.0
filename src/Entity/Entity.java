@@ -1,8 +1,9 @@
 package Entity;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Entity {
+public abstract class Entity {
     protected int x, y;
     protected int velocity;
 
@@ -15,4 +16,7 @@ public class Entity {
     protected int idleCounter = 0;
     protected int spriteNum = 0;
     protected int idleNum = 0;
+
+    public abstract void draw(Graphics2D g2D);
+    public abstract void update();
 }

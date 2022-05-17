@@ -1,6 +1,7 @@
 package Main;
 
 import Entity.Player;
+import Tile.TileLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,7 @@ public class GUI extends JPanel implements Runnable{
     private final int screenWidth = tileSize * hMax;
     private final int screenHeight = tileSize * vMax;
 
+    TileLoader tileL = new TileLoader(this);
     KeyInput keyInput = new KeyInput();
     private Thread thread;
 
@@ -80,6 +82,8 @@ public class GUI extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2D = ((Graphics2D) g);
+
+        tileL.draw(g2D);
 
         player.draw(g2D);
 
