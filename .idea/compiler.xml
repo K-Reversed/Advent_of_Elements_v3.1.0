@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
       <module name="Korge" target="16" />
+      <module name="Korge-root" target="16" />
       <module name="Korge.commonMain" target="1.8" />
       <module name="Korge.commonTest" target="1.8" />
       <module name="Korge.jvmMain" target="1.8" />
