@@ -8,7 +8,14 @@ public abstract class Entity {
     protected int velocity;
 
 
-    protected BufferedImage spriteSheet, idleL0, idleL1, idleR0, idleR1, up0, up1, left0, left1, down0, down1, right0, right1;
+    protected BufferedImage spriteSheet,
+            idleL0, idleL1, idleR0, idleR1,
+            up0, up1,
+            left0, left1,
+            down0, down1,
+            right0, right1,
+            attack0, attack1, attack2, attack3,
+            hit0, hit1, hit2, hit3;
     protected int spriteSize;
     protected String direction;
 
