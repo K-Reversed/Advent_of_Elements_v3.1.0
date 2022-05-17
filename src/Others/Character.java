@@ -29,17 +29,17 @@ public class Character extends GameObject {
 
     public void characterSprite (){
         try {
-            up0 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/wizard-frames/wizard-up-frame-0.png")));
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/wizard-frames/wizard-up-frame-1.png")));
+            up0 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/Old-Wizard-Sprite/wizard-up-frame-0.png")));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/Old-Wizard-Sprite/wizard-up-frame-1.png")));
 
-            left0 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/wizard-frames/wizard-left-frame-0.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/wizard-frames/wizard-left-frame-1.png")));
+            left0 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/Old-Wizard-Sprite/wizard-left-frame-0.png")));
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/Old-Wizard-Sprite/wizard-left-frame-1.png")));
 
-            right0 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/wizard-frames/wizard-right-frame-0.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/wizard-frames/wizard-right-frame-1.png")));
+            right0 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/Old-Wizard-Sprite/wizard-right-frame-0.png")));
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/Old-Wizard-Sprite/wizard-right-frame-1.png")));
 
-            down0 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/wizard-frames/wizard-down-frame-0.png")));
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/wizard-frames/wizard-down-frame-1.png")));
+            down0 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/Old-Wizard-Sprite/wizard-down-frame-0.png")));
+            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResource("res/png/Old-Wizard-Sprite/wizard-down-frame-1.png")));
         } catch (IOException e){
             e.printStackTrace();
         }
