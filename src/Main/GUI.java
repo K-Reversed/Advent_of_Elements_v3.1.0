@@ -14,12 +14,16 @@ public class GUI extends JPanel implements Runnable{
 
     //Screen Settings
     private final int originalTileSize = 32;
-    private final int scale = 2;
-    private final int tileSize = (originalTileSize * scale);
-    private final int hMax = 16;
-    private final int vMax = 12;
-    private final int screenWidth = tileSize * hMax;
-    private final int screenHeight = tileSize * vMax;
+    private final double scale = 2.5;
+    private final int tileSize = (int)(originalTileSize * scale);
+    private final int column = 16;
+    private final int row = 12;
+    private final int screenWidth = tileSize * column;
+    private final int screenHeight = tileSize * row;
+    private final int maxWorldColumn = 51;
+    private final int maxWorldRow = 51;
+    private final int worldWidth = (tileSize * maxWorldColumn);
+    private final int worldHeight = (tileSize * maxWorldRow);
 
     TileLoader tileL = new TileLoader(this);
     KeyInput keyInput = new KeyInput();
@@ -92,11 +96,32 @@ public class GUI extends JPanel implements Runnable{
     public int getTileSize() {
         return tileSize;
     }
-
-    public int gethMax() {
-        return hMax;
+    public int getColumn() {
+        return column;
     }
-    public int getvMax() {
-        return vMax;
+    public int getRow() {
+        return row;
+    }
+    public int getScreenWidth() {
+        return screenWidth;
+    }
+    public int getScreenHeight() {
+        return screenHeight;
+    }
+    public int getMaxWorldColumn() {
+        return maxWorldColumn;
+    }
+    public int getMaxWorldRow() {
+        return maxWorldRow;
+    }
+    public int getWorldWidth() {
+        return worldWidth;
+    }
+    public int getWorldHeight(){
+        return worldHeight;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

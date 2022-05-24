@@ -41,16 +41,15 @@ public class KeyInput implements KeyListener {
             right = true;
         }
 
-        //Others.Spell Attack Implementation
 //        if (key == KeyEvent.VK_1) {
 //        }
 //        if (key == KeyEvent.VK_2) {
 //        }
 //        if (key == KeyEvent.VK_3) {
 //        }
-//        if (key == KeyEvent.VK_ESCAPE) {
-//            System.exit(0);
-//        }
+        if (key == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+        }
     }
 
     public void keyReleased(KeyEvent e) {

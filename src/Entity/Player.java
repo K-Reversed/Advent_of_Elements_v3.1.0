@@ -13,33 +13,46 @@ public class Player extends Entity {
     private final GUI gPanel;
     private final KeyInput keyInput;
 
+    private final int screenX;
+    private final int screenY;
+
     public Player(GUI gPanel, KeyInput keyInput) {
         this.gPanel = gPanel;
         this.keyInput = keyInput;
 
-        setDefaultValues();
-        getSprite();
-    }
+        screenX = ((gPanel.getScreenWidth() / 2) - gPanel.getTileSize());
+        screenY = ((gPanel.getScreenHeight() / 2) - gPanel.getTileSize());
 
+        setDefaultValues();
+        getImage();
+    }
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
-        velocity = 3;
+        worldX = (gPanel.getTileSize() * 26);
+       worldY = (gPanel.getTileSize() * 26);
+        velocity = 4;
         direction = ("idle left");
     }
 
-    public void getSprite() {
+    public void getImage() {
         try {
             spriteSize = 64;
-            spriteSheet = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/png/SpriteSheets/Wizard 2.0 Sprite Sheet.png")));
+            spriteSheet = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/png/SpriteSheets/Wizard 3.0 Sprite Sheet.png")));
             idleR0 = spriteSheet.getSubimage(0,0, spriteSize, spriteSize);
             idleR1 = spriteSheet.getSubimage(64, 0, spriteSize, spriteSize);
+            idleL0 = spriteSheet.getSubimage(512, 0, spriteSize, spriteSize);
+            idleL1 = spriteSheet.getSubimage(576, 0, spriteSize, spriteSize);
             right0 = spriteSheet.getSubimage(128, 0, spriteSize, spriteSize);
             right1 = spriteSheet.getSubimage(192, 0, spriteSize, spriteSize);
-            idleL0 = spriteSheet.getSubimage(256, 0, spriteSize, spriteSize);
-            idleL1 = spriteSheet.getSubimage(320, 0, spriteSize, spriteSize);
-            left0 = spriteSheet.getSubimage(384, 0, spriteSize, spriteSize);
-            left1 = spriteSheet.getSubimage(448, 0, spriteSize, spriteSize);
+            right2 = spriteSheet.getSubimage(256, 0, spriteSize, spriteSize);
+            right3 = spriteSheet.getSubimage(320, 0, spriteSize, spriteSize);
+            right4 = spriteSheet.getSubimage(384, 0, spriteSize, spriteSize);
+            right5 = spriteSheet.getSubimage(448, 0, spriteSize, spriteSize);
+            left0 = spriteSheet.getSubimage(640, 0, spriteSize, spriteSize);
+            left1 = spriteSheet.getSubimage(704, 0, spriteSize, spriteSize);
+            left2 = spriteSheet.getSubimage(768, 0, spriteSize, spriteSize);
+            left3 = spriteSheet.getSubimage(896, 0, spriteSize, spriteSize);
+            left4 = spriteSheet.getSubimage(832, 0, spriteSize, spriteSize);
+            left5 = spriteSheet.getSubimage(960, 0, spriteSize, spriteSize);
             up0 = null;
             up1 = null;
             down0 = null;
@@ -51,20 +64,20 @@ public class Player extends Entity {
         if (keyInput.isUp()){
             if (keyInput.getLastPressed().equals("left")) {direction = ("left");}
             if (keyInput.getLastPressed().equals("right")) {direction = ("right");}
-            y -= velocity;
+           worldY-= velocity;
         }
         if (keyInput.isLeft()){
             direction = ("left");
-            x -= velocity;
+            worldX -= velocity;
         }
         if (keyInput.isDown()){
             if (keyInput.getLastPressed().equals("left")) {direction = ("left");}
             if (keyInput.getLastPressed().equals("right")) {direction = ("right");}
-            y += velocity;
+           worldY+= velocity;
         }
         if (keyInput.isRight()){
             direction = ("right");
-            x += velocity;
+            worldX += velocity;
         }
 
         //Specific Key Input Cases
@@ -97,9 +110,13 @@ public class Player extends Entity {
         }
         spriteCounter ++;
         idleCounter ++;
-        if (spriteCounter > 10) {
+        if (spriteCounter > 6) {
             if (spriteNum == 0) {spriteNum = 1;}
-            else if (spriteNum == 1) {spriteNum = 0;}
+            else if (spriteNum == 1) {spriteNum = 2;}
+            else if (spriteNum == 2) {spriteNum = 3;}
+            else if (spriteNum == 3) {spriteNum = 4;}
+            else if (spriteNum == 4) {spriteNum = 5;}
+            else if (spriteNum == 5) {spriteNum = 0;}
             spriteCounter = 0;
         }
         if (idleCounter > 20) {
@@ -113,12 +130,24 @@ public class Player extends Entity {
         BufferedImage image = null;
         switch (direction) {
             case ("left") -> {
-                if (spriteNum == 0) {image = left0;}
-                if (spriteNum == 1) {image = left1;}
+                switch (spriteNum) {
+                    case (0) -> image = left0;
+                    case (1) -> image = left1;
+                    case (2) -> image = left2;
+                    case (3) -> image = left3;
+                    case (4) -> image = left4;
+                    case (5) -> image = left5;
+                }
             }
             case ("right") -> {
-                if (spriteNum == 0) {image = right0;}
-                if (spriteNum == 1) {image = right1;}
+                switch (spriteNum) {
+                    case (0) -> image = right0;
+                    case (1) -> image = right1;
+                    case (2) -> image = right2;
+                    case (3) -> image = right3;
+                    case (4) -> image = right4;
+                    case (5) -> image = right5;
+                }
             }
             case ("idle left") -> {
                 if (idleNum == 0) {image = idleL0;}
@@ -129,6 +158,19 @@ public class Player extends Entity {
                 if (idleNum == 1) {image = idleR1;}
             }
         }
-        g2D.drawImage(image, x, y, gPanel.getTileSize(), gPanel.getTileSize(), null);
+        g2D.drawImage(image, screenX, screenY, gPanel.getTileSize(), gPanel.getTileSize(), null);
+    }
+
+    public int getScreenX() {
+        return screenX;
+    }
+    public int getScreenY() {
+        return screenY;
+    }
+    public int getWorldX(){
+        return (worldX);
+    }
+    public int getWorldY(){
+        return (worldY);
     }
 }

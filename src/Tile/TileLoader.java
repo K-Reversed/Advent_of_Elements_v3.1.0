@@ -5,21 +5,31 @@ import Main.GUI;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class TileLoader extends Entity {
 
     GUI gPanel;
     Tile[] tiles;
+    private final int[][] mapTileA;
+    private final int[][] mapTileB;
 
     public TileLoader (GUI gPanel) {
         this.gPanel = gPanel;
         tiles = new Tile[20];
-        getTiles();
+        getImage();
+        mapTileA = new int[gPanel.getMaxWorldColumn()][gPanel.getMaxWorldRow()];
+        mapTileB = new int[gPanel.getMaxWorldColumn()][gPanel.getMaxWorldRow()];
+        getWorldMapA();
+        getWorldMapB();
     }
 
-    public void getTiles() {
+    public void getImage() {
         try {
             tiles[0] = new Tile();
             tiles[0].setImage(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/png/Tiles/Grass Tile 0.png"))));
@@ -71,24 +81,75 @@ public class TileLoader extends Entity {
 
             tiles[16] = new Tile();
             tiles[16].setImage(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/png/Tiles/Grass + Sand Tile 7.png"))));
+
         } catch (IOException e){
             e.printStackTrace();
         }
     }
 
+    public void getWorldMapA(){
+        try{
+            InputStream inputStream = getClass().getResourceAsStream("/res/TextFiles/WorldMap A.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
+
+            for (int i = 0; i < gPanel.getMaxWorldColumn(); i++) {
+                String line = reader.readLine();
+                String[] strings = line.split(" ");
+                for (int j = 0;  j < gPanel.getMaxWorldRow(); j++) {
+
+                    int num = Integer.parseInt(strings[j]);
+
+                    mapTileA[j][i] = num;
+                }
+            }
+
+            reader.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        System.out.println(Arrays.deepToString(mapTileA));
+    }
+
+    public void getWorldMapB(){
+        try{
+            InputStream inputStream = getClass().getResourceAsStream("/res/TextFiles/WorldMap B.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
+
+            for (int i = 0; i < gPanel.getMaxWorldColumn(); i++) {
+                String line = reader.readLine();
+                String[] strings = line.split(" ");
+                for (int j = 0;  j < gPanel.getMaxWorldRow(); j++) {
+
+                    int num = Integer.parseInt(strings[j]);
+
+                    mapTileB[j][i] = num;
+                }
+            }
+
+            reader.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        System.out.println(Arrays.deepToString(mapTileB));
+    }
+
     public void draw(Graphics2D g2D) {
-        int column = 0;
-        int row = 0;
-        int x = 0;
-        int y = 0;
-        for (int i = 0; i < gPanel.gethMax(); i++) {
-            for (int j = 0; j < gPanel.getvMax(); j++) {
-                g2D.drawImage(tiles[1].getImage(), i * gPanel.getTileSize(), j * gPanel.getTileSize(), gPanel.getTileSize(), gPanel.getTileSize(), null);
+        for (int i = 0; i < gPanel.getMaxWorldColumn(); i++) {
+            for (int j = 0; j < gPanel.getMaxWorldRow(); j++) {
+                int tileNum = mapTileA[i][j];
+                int screenX = ((i * gPanel.getTileSize()) - gPanel.getPlayer().getWorldX() + gPanel.getPlayer().getScreenX() + gPanel.getTileSize());
+                int screenY = ((j * gPanel.getTileSize()) - gPanel.getPlayer().getWorldY() + gPanel.getPlayer().getScreenY() + gPanel.getTileSize());
+                if (tileNum != 17) {
+                    if (j * gPanel.getTileSize() > gPanel.getPlayer().getWorldY() - (gPanel.getPlayer().getScreenY() + (2 * gPanel.getTileSize())))
+                        if (i * gPanel.getTileSize() < gPanel.getPlayer().getWorldX() + (gPanel.getPlayer().getScreenX() + (2 * gPanel.getTileSize())))
+                            if (i * gPanel.getTileSize() > gPanel.getPlayer().getWorldX() - (gPanel.getPlayer().getScreenX() + (2 * gPanel.getTileSize())))
+                                if (j * gPanel.getTileSize() < gPanel.getPlayer().getWorldY() + (gPanel.getPlayer().getScreenY() + (2 * gPanel.getTileSize()))) {
+                                    g2D.drawImage(tiles[tileNum].getImage(), screenX, screenY, gPanel.getTileSize(), gPanel.getTileSize(), null);
+                                }
+                }
             }
         }
     }
 
-    public void update() {
-
-    }
+    public void update() {}
 }
