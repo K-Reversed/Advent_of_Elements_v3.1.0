@@ -2,7 +2,7 @@ package Tile;
 
 import java.awt.image.BufferedImage;
 
-public class Tile {
+public class TileSet {
 
     private BufferedImage image;
     private boolean collision = false;
@@ -19,7 +19,7 @@ public class Tile {
         this.collision = collision;
     }
 
-    public boolean isCollision() {
+    public boolean hasCollision() {
         return collision;
     }
 

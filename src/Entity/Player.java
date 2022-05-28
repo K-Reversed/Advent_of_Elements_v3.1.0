@@ -2,6 +2,7 @@ package Entity;
 
 import Main.GUI;
 import Main.KeyInput;
+import Main.MouseInput;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,13 +13,15 @@ import java.util.Objects;
 public class Player extends Entity {
     private final GUI gPanel;
     private final KeyInput keyInput;
+    private final MouseInput mouseInput;
 
     private final int screenX;
     private final int screenY;
 
-    public Player(GUI gPanel, KeyInput keyInput) {
+    public Player(GUI gPanel, KeyInput keyInput, MouseInput mouseInput) {
         this.gPanel = gPanel;
         this.keyInput = keyInput;
+        this.mouseInput = mouseInput;
 
         screenX = ((gPanel.getScreenWidth() / 2) - gPanel.getTileSize());
         screenY = ((gPanel.getScreenHeight() / 2) - gPanel.getTileSize());
@@ -111,12 +114,14 @@ public class Player extends Entity {
         spriteCounter ++;
         idleCounter ++;
         if (spriteCounter > 6) {
-            if (spriteNum == 0) {spriteNum = 1;}
-            else if (spriteNum == 1) {spriteNum = 2;}
-            else if (spriteNum == 2) {spriteNum = 3;}
-            else if (spriteNum == 3) {spriteNum = 4;}
-            else if (spriteNum == 4) {spriteNum = 5;}
-            else if (spriteNum == 5) {spriteNum = 0;}
+            switch (spriteNum) {
+                case (0) -> spriteNum = 1;
+                case (1) -> spriteNum = 2;
+                case (2) -> spriteNum = 3;
+                case (3) -> spriteNum = 4;
+                case (4) -> spriteNum = 5;
+                case (5) -> spriteNum = 0;
+            }
             spriteCounter = 0;
         }
         if (idleCounter > 20) {

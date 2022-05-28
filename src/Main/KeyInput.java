@@ -7,13 +7,15 @@ import java.awt.event.KeyListener;
  * @since 1.2
  */
 public class KeyInput implements KeyListener {
+    private GUI gPanel;
     private boolean up;
     private boolean left;
     private boolean down;
     private boolean right;
     private String lastPressed = "left";
 
-    public KeyInput() {
+    public KeyInput (GUI gPanel){
+        this.gPanel = gPanel;
     }
 
     public void keyTyped(KeyEvent e) {
@@ -49,6 +51,12 @@ public class KeyInput implements KeyListener {
 //        }
         if (key == KeyEvent.VK_ESCAPE) {
             System.exit(0);
+        }
+        if (!gPanel.hasFocus()){
+            up = false;
+            left = false;
+            down = false;
+            right = false;
         }
     }
 
