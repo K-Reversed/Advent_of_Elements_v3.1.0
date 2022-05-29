@@ -1,6 +1,9 @@
 package Tile;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
 
 public class TileSet {
 
@@ -11,8 +14,12 @@ public class TileSet {
         return image;
     }
 
-    public void setImage(BufferedImage image) {
-        this.image = image;
+    public void setImage (String string) {
+        try {
+            this.image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/png/Tiles/" + string)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setCollision(boolean collision) {

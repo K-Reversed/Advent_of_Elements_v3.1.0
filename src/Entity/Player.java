@@ -30,8 +30,8 @@ public class Player extends Entity {
         getImage();
     }
     public void setDefaultValues() {
-        worldX = (gPanel.getTileSize() * 26);
-       worldY = (gPanel.getTileSize() * 26);
+        worldX = ((gPanel.getMaxWorldRow() / 2 - 1) * gPanel.getTileSize());
+       worldY = ((gPanel.getMaxWorldColumn() / 2) * gPanel.getTileSize());
         velocity = 4;
         direction = ("idle left");
     }
