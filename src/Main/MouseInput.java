@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 public class MouseInput implements MouseListener {
     private final GUI gPanel;
+    private boolean attack;
     public MouseInput (GUI gPanel){
         this.gPanel = gPanel;
     }

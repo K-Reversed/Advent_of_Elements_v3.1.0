@@ -3,7 +3,6 @@ package Tile;
 import Entity.Entity;
 import Main.GUI;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,19 +20,19 @@ public class TileLoader extends Entity {
 
     public TileLoader (GUI gPanel) {
         this.gPanel = gPanel;
-        tileSet = new TileSet[52];
+        tileSet = new TileSet[101];
         getImage();
         mapTileA = new int[gPanel.getMaxWorldColumn()][gPanel.getMaxWorldRow()];
         mapTileB = new int[gPanel.getMaxWorldColumn()][gPanel.getMaxWorldRow()];
-        getWorldMapA();
-        getWorldMapB();
+        getWorldMapA0();
+        getWorldMapA1();
     }
 
     /**
      * @param string Map Input
      * @return an int value corresponding to a tile
      */
-    public int mapCode (String string){
+    public int mapKey (String string){
         int num = 0;
         switch (string) {
             case ("b") -> num = 1; case ("c") -> num = 2; case ("d") -> num = 3; case ("e") -> num = 4; case ("f") -> num = 5; case ("g") -> num = 6;
@@ -67,11 +66,37 @@ public class TileLoader extends Entity {
         tileSet[9].setImage("Grass + Sand Tile (Middle Right Edge).png"); tileSet[10].setImage("Grass + Sand Tile (Top Center Edge).png"); tileSet[11].setImage("Grass + Sand Tile (Top Left Corner).png");
         tileSet[12].setImage("Grass + Sand Tile (Top Right Corner).png"); tileSet[13].setImage("Grass Tile 0.png"); tileSet[14].setImage("Grass Tile 1.png");
         tileSet[15].setImage("Sand Tile 0.png"); tileSet[16].setImage("Void Tile.png"); tileSet[17].setImage("Null Tile.png");
-//        tileSet[18].setImage(""); tileSet[19].setImage(""); tileSet[20].setImage("");
-
+        tileSet[18].setImage("Dungeon Wall Tile 0.png"); tileSet[19].setImage("Dungeon Floor Tile 0.png"); tileSet[20].setImage("Dungeon Floor Tile 1.png");
+        tileSet[21].setImage("Dungeon Floor Tile 2.png"); tileSet[22].setImage("Stone Wall Tile (Horizontal).png"); tileSet[23].setImage("Stone Wall Tile (Horizontal Top).png");
+        tileSet[24].setImage("Stone Wall Tile (Horizontal Bottom).png"); tileSet[25].setImage("Stone Wall Tile (Vertical).png"); tileSet[26].setImage("Stone Wall Tile (Vertical Left).png");
+        tileSet[27].setImage("Stone Wall Tile (Vertical Right).png"); tileSet[28].setImage("Stone Wall Tile (Top Left Corner).png"); tileSet[29].setImage("Stone Wall Tile (Top Right Corner).png");
+        tileSet[30].setImage("Stone Wall Tile (Bottom Left Corner).png"); tileSet[31].setImage("Stone Wall Tile (Bottom Right Corner).png"); tileSet[32].setImage("Stone Wall Tile (Left End).png");
+        tileSet[33].setImage("Stone Wall Tile (Right End).png"); tileSet[34].setImage("Stone Wall Tile (Top End).png"); tileSet[35].setImage("Stone Wall Tile (Bottom End).png");
+        tileSet[36].setImage("Stone Wall Tile (Intersection).png"); tileSet[37].setImage("Dungeon Center Tile 0.png"); tileSet[38].setImage("Dungeon Center Tile 1.png");
+        tileSet[39].setImage("Dungeon Center Tile 2.png"); tileSet[40].setImage("Dungeon Center Tile 3.png"); tileSet[41].setImage("Dungeon Center Tile 4.png");
+        tileSet[42].setImage("Dungeon Center Tile 5.png"); tileSet[43].setImage("Dungeon Center Tile 6.png"); tileSet[44].setImage("Dungeon Center Tile 7.png");
+        tileSet[45].setImage("Dungeon Center Tile 8.png"); tileSet[46].setImage(""); tileSet[47].setImage("");
+        tileSet[48].setImage(""); tileSet[49].setImage(""); tileSet[50].setImage("");
+        tileSet[51].setImage(""); tileSet[52].setImage(""); tileSet[53].setImage("");
+        tileSet[54].setImage(""); tileSet[55].setImage(""); tileSet[56].setImage("");
+        tileSet[57].setImage(""); tileSet[58].setImage(""); tileSet[59].setImage("");
+        tileSet[60].setImage(""); tileSet[61].setImage(""); tileSet[62].setImage("");
+        tileSet[63].setImage(""); tileSet[64].setImage(""); tileSet[65].setImage("");
+        tileSet[66].setImage(""); tileSet[67].setImage(""); tileSet[68].setImage("");
+        tileSet[69].setImage(""); tileSet[70].setImage(""); tileSet[71].setImage("");
+        tileSet[72].setImage(""); tileSet[73].setImage(""); tileSet[74].setImage("");
+        tileSet[75].setImage(""); tileSet[76].setImage(""); tileSet[77].setImage("");
+        tileSet[78].setImage(""); tileSet[79].setImage(""); tileSet[80].setImage("");
+        tileSet[81].setImage(""); tileSet[82].setImage(""); tileSet[83].setImage("");
+        tileSet[84].setImage(""); tileSet[85].setImage(""); tileSet[86].setImage("");
+        tileSet[87].setImage(""); tileSet[88].setImage(""); tileSet[89].setImage("");
+        tileSet[90].setImage(""); tileSet[91].setImage(""); tileSet[92].setImage("");
+        tileSet[93].setImage(""); tileSet[94].setImage(""); tileSet[95].setImage("");
+        tileSet[96].setImage(""); tileSet[97].setImage(""); tileSet[98].setImage("");
+        tileSet[99].setImage("");
     }
 
-    public void getWorldMapA(){
+    public void getWorldMapA0 (){
         try {
             InputStream inputStream = getClass().getResourceAsStream("/res/TextFiles/WorldMap A (Ground).txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
@@ -79,8 +104,7 @@ public class TileLoader extends Entity {
                 String line = reader.readLine();
                 String[] strings = line.split(" ");
                 for (int j = 0;  j < gPanel.getMaxWorldRow(); j++) {
-                    int num = mapCode(strings[j]);
-                    System.out.println(num);
+                    int num = mapKey(strings[j]);
                     mapTileA[j][i] = num;
                 }
 
@@ -93,16 +117,16 @@ public class TileLoader extends Entity {
         for (int[] i : mapTileA) System.out.println(Arrays.toString(i));
     }
 
-    public void getWorldMapB(){
+    public void getWorldMapA1 (){
         try{
-            InputStream inputStream = getClass().getResourceAsStream("/res/TextFiles/WorldMap B (Layer 1).txt");
+            InputStream inputStream = getClass().getResourceAsStream("/res/TextFiles/WorldMap A (Layer 1).txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
 
             for (int i = 0; i < gPanel.getMaxWorldColumn(); i++) {
                 String line = reader.readLine();
                 String[] strings = line.split(" ");
                 for (int j = 0;  j < gPanel.getMaxWorldRow(); j++) {
-                    int num = mapCode(strings[j]);
+                    int num = mapKey(strings[j]);
                     mapTileB[j][i] = num;
                 }
             }

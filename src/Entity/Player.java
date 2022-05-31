@@ -60,6 +60,8 @@ public class Player extends Entity {
             up1 = null;
             down0 = null;
             down1 = null;
+            attack0 = null;
+            attack1 = null;
         } catch (IOException e) {e.printStackTrace();}
     }
 

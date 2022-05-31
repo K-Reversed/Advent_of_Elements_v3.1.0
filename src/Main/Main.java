@@ -20,9 +20,6 @@ import java.awt.*;
  * @since 1.0
  */
 public class Main extends Canvas{
-    /**
-     * @updated 1.1, 1.2
-     */
     public Main(){
 
         JFrame window = new JFrame();
@@ -49,9 +46,6 @@ public class Main extends Canvas{
         }
     }
 
-    /**
-     * @param args the main method
-     */
     public static void main(String[] args){
         new Main();
     }

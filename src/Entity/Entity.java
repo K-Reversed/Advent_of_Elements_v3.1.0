@@ -16,10 +16,14 @@ public abstract class Entity {
             hit0, hit1, hit2, hit3;
     protected int spriteSize;
     protected String direction;
-    protected int spriteCounter = 0;
-    protected int idleCounter = 0;
     protected int spriteNum = 0;
+    protected int spriteCounter = 0;
     protected int idleNum = 0;
+    protected int idleCounter = 0;
+    protected int attackNum = 0;
+    protected int attackCounter = 0;
+    protected int hitNum = 0;
+    protected int hitCounter = 0;
 
     public abstract void draw(Graphics2D g2D);
     public abstract void update();
