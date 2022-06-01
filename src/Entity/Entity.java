@@ -24,8 +24,35 @@ public abstract class Entity {
     protected int attackCounter = 0;
     protected int hitNum = 0;
     protected int hitCounter = 0;
+    protected Rectangle hitBox;
+    protected boolean collision = false;
 
     public abstract void draw(Graphics2D g2D);
     public abstract void update();
     public abstract void getImage();
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
+    }
+    public void setWorldX(int worldX) {
+        this.worldX = worldX;
+    }
+    public void setWorldY(int worldY) {
+        this.worldY = worldY;
+    }
+    public int getWorldX() {
+        return worldX;
+    }
+    public int getWorldY() {
+        return worldY;
+    }
+    public Rectangle getHitBox() {
+        return hitBox;
+    }
+    public String getDirection() {
+        return direction;
+    }
+    public int getVelocity() {
+        return velocity;
+    }
 }

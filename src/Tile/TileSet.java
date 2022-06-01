@@ -1,6 +1,7 @@
 package Tile;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +11,7 @@ public class TileSet {
 
     private BufferedImage image;
     private boolean collision = false;
+//    private Polygon collisionBounds;
 
     public void setImage (String string) {
         try {
@@ -21,6 +23,11 @@ public class TileSet {
 
     public BufferedImage getImage() {return image;}
     public void setCollision(boolean collision) {this.collision = collision;}
+//    public void setCollisionBounds(Polygon collisionBounds) {
+//        this.collisionBounds = collisionBounds;
+//    }
     public boolean hasCollision() {return collision;}
-
+//    public Polygon getCollisionBounds() {
+//        return collisionBounds;
+//    }
 }

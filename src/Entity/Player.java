@@ -26,11 +26,14 @@ public class Player extends Entity {
         screenX = ((gPanel.getScreenWidth() / 2) - gPanel.getTileSize());
         screenY = ((gPanel.getScreenHeight() / 2) - gPanel.getTileSize());
 
+        hitBox = new Rectangle(13, 16, 21, 36);
+
         setDefaultValues();
         getImage();
     }
+
     public void setDefaultValues() {
-        worldX = ((gPanel.getMaxWorldRow() / 2 - 1) * gPanel.getTileSize());
+        worldX = ((gPanel.getMaxWorldRow() / 2) * gPanel.getTileSize());
        worldY = ((gPanel.getMaxWorldColumn() / 2) * gPanel.getTileSize());
         velocity = 4;
         direction = ("idle left");
@@ -67,22 +70,30 @@ public class Player extends Entity {
 
     public void update() {
         if (keyInput.isUp()){
-            if (keyInput.getLastPressed().equals("left")) {direction = ("left");}
-            if (keyInput.getLastPressed().equals("right")) {direction = ("right");}
-           worldY-= velocity;
+            if (keyInput.getLastPressed().equals("left")) {direction = ("up left");}
+            if (keyInput.getLastPressed().equals("right")) {direction = ("up right");}
         }
         if (keyInput.isLeft()){
             direction = ("left");
-            worldX -= velocity;
         }
         if (keyInput.isDown()){
-            if (keyInput.getLastPressed().equals("left")) {direction = ("left");}
-            if (keyInput.getLastPressed().equals("right")) {direction = ("right");}
-           worldY+= velocity;
+            if (keyInput.getLastPressed().equals("left")) {direction = ("down left");}
+            if (keyInput.getLastPressed().equals("right")) {direction = ("down right");}
         }
         if (keyInput.isRight()){
             direction = ("right");
-            worldX += velocity;
+        }
+        if (keyInput.isUp() && keyInput.isLeft()){
+            direction = ("NW");
+        }
+        if (keyInput.isUp() && keyInput.isRight()){
+            direction = ("NE");
+        }
+        if (keyInput.isDown() && keyInput.isLeft()){
+            direction = ("SW");
+        }
+        if (keyInput.isDown() && keyInput.isRight()){
+            direction = ("SE");
         }
 
         //Specific Key Input Cases
@@ -105,14 +116,36 @@ public class Player extends Entity {
             if (keyInput.getLastPressed().equals("left")) {direction = ("idle left");}
             if (keyInput.getLastPressed().equals("right")) {direction = ("idle right");}
         }
-        //Left + Up or Down Keys Pressed
-        if ((keyInput.isUp() || keyInput.isDown()) && keyInput.isLeft() && !keyInput.isRight()) {
-            direction = ("left");
+
+
+        collision = false;
+        gPanel.geteCollision().tileCollision(this);
+
+        if (!collision) {
+            switch (direction){
+                case ("NE") -> {
+                    worldY -= velocity;
+                    worldX += velocity;
+                }
+                case ("up left"), ("up right") -> worldY -= velocity;
+                case ("NW") -> {
+                    worldY -= velocity;
+                    worldX -= velocity;
+                }
+                case ("left") -> worldX -= velocity;
+                case ("SW") -> {
+                    worldY += velocity;
+                    worldX -= velocity;
+                }
+                case ("down left"), ("down right") -> worldY += velocity;
+                case ("SE") -> {
+                    worldY += velocity;
+                    worldX += velocity;
+                }
+                case ("right") -> worldX += velocity;
+            }
         }
-        //Right + Up or Down Keys Pressed
-        if ((keyInput.isUp() && keyInput.isDown()) && !keyInput.isLeft() && keyInput.isRight()) {
-            direction = ("right");
-        }
+
         spriteCounter ++;
         idleCounter ++;
         if (spriteCounter > 6) {
@@ -136,7 +169,7 @@ public class Player extends Entity {
     public void draw(Graphics2D g2D) {
         BufferedImage image = null;
         switch (direction) {
-            case ("left") -> {
+            case ("left"), ("up left"), ("down left"), ("NW"), ("SW") -> {
                 switch (spriteNum) {
                     case (0) -> image = left0;
                     case (1) -> image = left1;
@@ -146,7 +179,7 @@ public class Player extends Entity {
                     case (5) -> image = left5;
                 }
             }
-            case ("right") -> {
+            case ("right"), ("up right"), ("down right"), ("NE"), ("SE") -> {
                 switch (spriteNum) {
                     case (0) -> image = right0;
                     case (1) -> image = right1;
@@ -166,6 +199,7 @@ public class Player extends Entity {
             }
         }
         g2D.drawImage(image, screenX, screenY, gPanel.getTileSize(), gPanel.getTileSize(), null);
+        g2D.setColor(new Color(218, 26, 26, 97));
     }
 
     public int getScreenX() {

@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -15,17 +16,16 @@ public class TileLoader extends Entity {
 
     GUI gPanel;
     TileSet[] tileSet;
-    private final int[][] mapTileA;
-    private final int[][] mapTileB;
+    private final ArrayList<int[][]> mapArray;
 
     public TileLoader (GUI gPanel) {
         this.gPanel = gPanel;
         tileSet = new TileSet[101];
         getImage();
-        mapTileA = new int[gPanel.getMaxWorldColumn()][gPanel.getMaxWorldRow()];
-        mapTileB = new int[gPanel.getMaxWorldColumn()][gPanel.getMaxWorldRow()];
-        getWorldMapA0();
-        getWorldMapA1();
+        mapArray = new ArrayList<>();
+        getWorldMaps("/res/TextFiles/WorldMap A (Ground).txt", new int[gPanel.getMaxWorldColumn()][gPanel.getMaxWorldRow()]);
+        getWorldMaps("/res/TextFiles/WorldMap A (Layer 1).txt", new int[gPanel.getMaxWorldColumn()][gPanel.getMaxWorldRow()]);
+        getWorldMaps("/res/TextFiles/Dungeon Map A (Ground).txt", new int[gPanel.getMaxWorldColumn()][gPanel.getMaxWorldRow()]);
     }
 
     /**
@@ -94,67 +94,85 @@ public class TileLoader extends Entity {
         tileSet[93].setImage(""); tileSet[94].setImage(""); tileSet[95].setImage("");
         tileSet[96].setImage(""); tileSet[97].setImage(""); tileSet[98].setImage("");
         tileSet[99].setImage("");
+        setTileCollision();
     }
 
-    public void getWorldMapA0 (){
-        try {
-            InputStream inputStream = getClass().getResourceAsStream("/res/TextFiles/WorldMap A (Ground).txt");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
-            for (int i = 0; i < gPanel.getMaxWorldColumn(); i++) {
-                String line = reader.readLine();
-                String[] strings = line.split(" ");
-                for (int j = 0;  j < gPanel.getMaxWorldRow(); j++) {
-                    int num = mapKey(strings[j]);
-                    mapTileA[j][i] = num;
-                }
-
-            }
-
-            reader.close();
-        } catch (IOException e){
-            e.printStackTrace();
+    public void setTileCollision (){
+        tileSet[16].setCollision(true);
+        tileSet[18].setCollision(true);
+        for (int i = 22; i <= 36; i++){
+            tileSet[i].setCollision(true);
         }
-        for (int[] i : mapTileA) System.out.println(Arrays.toString(i));
+        //setCollisionBounds();
     }
 
-    public void getWorldMapA1 (){
+//    public void setCollisionBounds(){
+//        tileSet[16].setCollisionBounds(new Polygon (new int[]{0, 64, 64, 0}, new int[]{0, 0, 64, 64}, 4));
+//        tileSet[18].setCollisionBounds(new Polygon (new int[]{0, 64, 64, 0}, new int[]{0, 0, 64, 64}, 4));
+//        tileSet[22].setCollisionBounds(new Polygon(new int[]{0, 64, 64, 0}, new int[]{21, 21, 25, 25}, 4));//Horizontal
+//        tileSet[23].setCollisionBounds(new Polygon(new int[]{0, 29, 29, 35, 35, 64, 64, 0}, new int[]{21, 21, 0, 0, 21, 21, 25, 25}, 8));//Horizontal Top
+//        tileSet[24].setCollisionBounds(new Polygon(new int[]{0, 64, 64, 35, 35, 29, 29, 0}, new int[]{21, 21, 25, 25, 64, 64, 25, 25}, 8));//Horizontal Bottom
+//        tileSet[25].setCollisionBounds(new Polygon(new int[]{29, 35, 35, 29}, new int[]{0, 0, 64, 64}, 4));//Vertical
+//        tileSet[26].setCollisionBounds(new Polygon(new int[]{0, 29, 29, 35, 35, 29, 29, 0}, new int[]{21, 21, 0, 0, 64, 64, 25, 25}, 8));//Vertical Left
+//        tileSet[27].setCollisionBounds(new Polygon(new int[]{29, 35, 35, 64, 64, 35,35, 29}, new int[]{0, 0, 21, 21, 25, 25, 64, 64}, 8));//Vertical Right
+//        tileSet[28].setCollisionBounds(new Polygon(new int[]{29, 64, 64, 35, 35, 29}, new int[]{21, 21, 25, 25, 64, 64}, 6));//Top Left Corner
+//        tileSet[29].setCollisionBounds(new Polygon(new int[]{0, 35, 35, 29, 29, 0}, new int[]{21, 21, 64, 64, 25, 25}, 6));//Top Right Corner
+//        tileSet[30].setCollisionBounds(new Polygon(new int[]{29, 35, 35, 64, 64, 29}, new int[]{0, 0, 21, 21, 25, 25}, 6));//Bottom Left Corner
+//        tileSet[31].setCollisionBounds(new Polygon(new int[]{0, 29, 29, 35, 35, 0}, new int[]{21, 21, 0, 0, 25, 25}, 6));//Bottom Right Corner
+//        tileSet[32].setCollisionBounds(new Polygon(new int[]{42, 64, 64, 42}, new int[]{21, 21, 25, 25}, 4));//Left End
+//        tileSet[33].setCollisionBounds(new Polygon(new int[]{0, 33, 33, 0}, new int[]{21, 21, 25, 25}, 4));//Right End
+//        tileSet[34].setCollisionBounds(new Polygon(new int[]{29, 35, 25, 29}, new int[]{21, 21, 64, 64}, 4));//Top End
+//        tileSet[35].setCollisionBounds(new Polygon(new int[]{29, 35, 35, 29}, new int[]{0, 0, 25, 25}, 4));//Bottom End
+//        tileSet[36].setCollisionBounds(new Polygon(new int[]{0, 29, 29, 35, 35, 64, 64, 35, 35, 29, 29, 0}, new int[]{21, 21, 0, 0, 21, 21, 25, 25, 64, 64, 25, 25}, 12));//Intersection
+//    }
+
+    public void getWorldMaps(String filePath, int[][] map){
         try{
-            InputStream inputStream = getClass().getResourceAsStream("/res/TextFiles/WorldMap A (Layer 1).txt");
+            InputStream inputStream = getClass().getResourceAsStream(filePath);
             BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
-
             for (int i = 0; i < gPanel.getMaxWorldColumn(); i++) {
                 String line = reader.readLine();
                 String[] strings = line.split(" ");
                 for (int j = 0;  j < gPanel.getMaxWorldRow(); j++) {
                     int num = mapKey(strings[j]);
-                    mapTileB[j][i] = num;
+                    map[j][i] = num;
                 }
             }
-
             reader.close();
+            mapArray.add(map);
         } catch (IOException e){
             e.printStackTrace();
         }
-        for (int[] i : mapTileB) System.out.println(Arrays.toString(i));
+        for (int[] i : map) {
+            System.out.println(Arrays.toString(i));
+        }
     }
 
     public void draw(Graphics2D g2D) {
+
         for (int i = 0; i < gPanel.getMaxWorldColumn(); i++) {
             for (int j = 0; j < gPanel.getMaxWorldRow(); j++) {
-                int tileNumA = mapTileA[i][j];
-                int tileNumB = mapTileB[i][j];
                 int screenX = ((i * gPanel.getTileSize()) - gPanel.getPlayer().getWorldX() + gPanel.getPlayer().getScreenX() + gPanel.getTileSize());
                 int screenY = ((j * gPanel.getTileSize()) - gPanel.getPlayer().getWorldY() + gPanel.getPlayer().getScreenY() + gPanel.getTileSize());
                 if (j * gPanel.getTileSize() > gPanel.getPlayer().getWorldY() - (gPanel.getPlayer().getScreenY() + (2 * gPanel.getTileSize())))
                     if (i * gPanel.getTileSize() < gPanel.getPlayer().getWorldX() + (gPanel.getPlayer().getScreenX() + (gPanel.getTileSize())))
                         if (i * gPanel.getTileSize() > gPanel.getPlayer().getWorldX() - (gPanel.getPlayer().getScreenX() + (2 * gPanel.getTileSize())))
                             if (j * gPanel.getTileSize() < gPanel.getPlayer().getWorldY() + (gPanel.getPlayer().getScreenY() + (gPanel.getTileSize()))) {
-                                g2D.drawImage(tileSet[tileNumA].getImage(), screenX, screenY, gPanel.getTileSize(), gPanel.getTileSize(), null);
-                                g2D.drawImage(tileSet[tileNumB].getImage(), screenX, screenY, gPanel.getTileSize(), gPanel.getTileSize(), null);
+                                g2D.drawImage(tileSet[mapArray.get(0)[i][j]].getImage(), screenX, screenY, gPanel.getTileSize(), gPanel.getTileSize(), null);
+                                g2D.drawImage(tileSet[mapArray.get(1)[i][j]].getImage(), screenX, screenY, gPanel.getTileSize(), gPanel.getTileSize(), null);
+                                //g2D.drawImage(tileSet[mapArray.get(2)[i][j]].getImage(), screenX, screenY, gPanel.getTileSize(), gPanel.getTileSize(), null);
                             }
             }
         }
     }
 
     public void update() {}
+
+    public ArrayList<int[][]> getMapArray() {
+        return mapArray;
+    }
+
+    public TileSet[] getTileSet() {
+        return tileSet;
+    }
 }

@@ -1,13 +1,7 @@
 package Main;
 /*
 TODO:
- 1. Add inventory,
- 2. Add items to inventory,
- 3. Try to find a way to add sprites (done)
- 4. Link keys to attacks (done)
- 5. Find a way to use 2d arrays in the project. (Possible implementation found in Others.Inventory)
- 6. Find a way to use arrayList. (Possible implementation found in Others.Inventory)
- 7. Find a way to use sorting algorithms.
+ 1. Fix sticky collision
 */
 
 import javax.swing.*;

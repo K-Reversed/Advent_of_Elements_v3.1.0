@@ -29,6 +29,7 @@ public class GUI extends JPanel implements Runnable {
     private final KeyInput keyInput = new KeyInput(this);
     private final MouseInput mouseInput = new MouseInput(this);
     private Thread thread;
+    private final EntityCollision eCollision = new EntityCollision(this);
 
     Player player = new Player(this, keyInput, mouseInput);
 
@@ -44,8 +45,6 @@ public class GUI extends JPanel implements Runnable {
         this.addKeyListener(keyInput);
         this.addMouseListener(mouseInput);
         this.setFocusable(true);
-
-
     }
 
     public void start() {
@@ -122,7 +121,15 @@ public class GUI extends JPanel implements Runnable {
     public int getWorldHeight() {
         return worldHeight;
     }
+    public EntityCollision geteCollision() {
+        return eCollision;
+    }
+    public TileLoader getTileL() {
+        return tileL;
+    }
+
     public Player getPlayer() {
         return player;
     }
+
 }
