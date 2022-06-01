@@ -2,7 +2,14 @@ package Main;
 
 import Entity.Entity;
 
-public record EntityCollision(GUI gPanel) {
+import java.util.Objects;
+
+public final class EntityCollision {
+    private final GUI gPanel;
+
+    public EntityCollision(GUI gPanel) {
+        this.gPanel = gPanel;
+    }
 
     public void tileCollision(Entity entity) {
         int entityLeft = (entity.getWorldX() - gPanel().getTileSize()) + entity.getHitBox().x;
@@ -73,4 +80,28 @@ public record EntityCollision(GUI gPanel) {
             }
         }
     }
+
+    public GUI gPanel() {
+        return gPanel;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (EntityCollision) obj;
+        return Objects.equals(this.gPanel, that.gPanel);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gPanel);
+    }
+
+    @Override
+    public String toString() {
+        return "EntityCollision[" +
+                "gPanel=" + gPanel + ']';
+    }
+
 }

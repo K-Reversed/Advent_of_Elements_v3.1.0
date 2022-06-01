@@ -22,8 +22,6 @@ public class GUI extends JPanel implements Runnable {
     private final int screenHeight = tileSize * row;
     private final int maxWorldColumn = 31;
     private final int maxWorldRow = 31;
-    private final int worldWidth = (tileSize * maxWorldColumn);
-    private final int worldHeight = (tileSize * maxWorldRow);
 
     private final TileLoader tileL = new TileLoader(this);
     private final KeyInput keyInput = new KeyInput(this);
@@ -116,10 +114,10 @@ public class GUI extends JPanel implements Runnable {
         return maxWorldRow;
     }
     public int getWorldWidth() {
-        return worldWidth;
+        return (tileSize * maxWorldColumn);
     }
     public int getWorldHeight() {
-        return worldHeight;
+        return (tileSize * maxWorldRow);
     }
     public EntityCollision geteCollision() {
         return eCollision;

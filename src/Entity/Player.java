@@ -26,7 +26,7 @@ public class Player extends Entity {
         screenX = ((gPanel.getScreenWidth() / 2) - gPanel.getTileSize());
         screenY = ((gPanel.getScreenHeight() / 2) - gPanel.getTileSize());
 
-        hitBox = new Rectangle(13, 16, 21, 36);
+        hitBox = new Rectangle(20 , 16, 20, 50);
 
         setDefaultValues();
         getImage();
@@ -200,6 +200,7 @@ public class Player extends Entity {
         }
         g2D.drawImage(image, screenX, screenY, gPanel.getTileSize(), gPanel.getTileSize(), null);
         g2D.setColor(new Color(218, 26, 26, 97));
+        g2D.draw(new Rectangle(hitBox.x + screenX, hitBox.y + screenY, hitBox.width, hitBox.height));
     }
 
     public int getScreenX() {

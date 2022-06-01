@@ -1,7 +1,10 @@
 package Main;
 /*
 TODO:
- 1. Fix sticky collision
+ 1. Fix inverted controls
+ 2. Create multiple maps
+ 3. Add enemies
+ 4. Add Boss
 */
 
 import javax.swing.*;
@@ -30,14 +33,6 @@ public class Main extends Canvas{
         window.setVisible(true);
 
         gPanel.start();
-    }
-
-    public static int clamp(int var, int min, int max){
-        if (var >= max){
-            return (max);
-        } else {
-            return Math.max(var, min);
-        }
     }
 
     public static void main(String[] args){
