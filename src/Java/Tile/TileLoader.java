@@ -22,6 +22,7 @@ public class TileLoader extends Entity {
     private int tileCounter = 0;
 
     public TileLoader (GUI gPanel) {
+        super(gPanel);
         this.gPanel = gPanel;
         tileSet = new TileSet[101];
         getImage();
@@ -64,15 +65,15 @@ public class TileLoader extends Entity {
     }
 
     public void getImage() {
-        for (int i = 0; i < tileSet.length - 1; i++) {
+        for (int i = 0; i < tileSet.length; i++) {
             tileSet[i] = new TileSet();
         }
         //a, b, c, d, e
-        tileSet[0].setImage("/Grass/Grass Tile 0.png"); tileSet[1].setImage("/Grass/Grass Tile 1.png"); tileSet[2].setImage("/Sand/Sand Tile 0.png"); tileSet[3].setImage("/Others/Tree Tile.png"); tileSet[4].setImage("/Others/Null Tile.png");
+        tileSet[0].setImage("/Grass/Grass Tile 0.png"); tileSet[1].setImage("/Grass/Grass Tile 1.png"); tileSet[2].setImage("/Sand/Sand Tile.png"); tileSet[3].setImage("/Others/Tree Tile.png"); tileSet[4].setImage("/Others/Null Tile.png");
         //f, g, h, i, j
         tileSet[5].setImage("/Others/Void Tile.png"); tileSet[6].setImage("/Transitions/Grass to Sand Tile (BCE).png"); tileSet[7].setImage("/Transitions/Grass to Sand Tile (BLC).png"); tileSet[8].setImage("/Transitions/Grass to Sand Tile (BRC).png"); tileSet[9].setImage("/Transitions/Grass to Sand Tile (MLE).png");
         //k, l, m, n, o
-        tileSet[10].setImage("/Transitions/Grass to Sand Tile (MLE).png"); tileSet[11].setImage("/Transitions/Grass to Sand Tile (MRE).png"); tileSet[12].setImage("/Transitions/Grass to Sand Tile (TCE).png"); tileSet[13].setImage("/Transitions/Grass to Sand Tile (TLC).png"); tileSet[14].setImage("Grass to Sand Tile (TRC).png");
+        tileSet[10].setImage("/Transitions/Grass to Sand Tile (MLE).png"); tileSet[11].setImage("/Transitions/Grass to Sand Tile (MRE).png"); tileSet[12].setImage("/Transitions/Grass to Sand Tile (TCE).png"); tileSet[13].setImage("/Transitions/Grass to Sand Tile (TLC).png"); tileSet[14].setImage("/Transitions/Grass to Sand Tile (TRC).png");
         //p, q, r, s, t
         tileSet[15].setImage("/Dungeon/Dungeon Center Tile 0.png"); tileSet[16].setImage("/Dungeon/Dungeon Center Tile 1.png"); tileSet[17].setImage("/Dungeon/Dungeon Center Tile 2.png"); tileSet[18].setImage("/Dungeon/Dungeon Center Tile 3.png"); tileSet[19].setImage("/Dungeon/Dungeon Center Tile 4.png");
         //u, v, w, x, y
@@ -84,29 +85,31 @@ public class TileLoader extends Entity {
         //J, K, L, M, N
         tileSet[35].setImage("/Path/Path Tile (TLC).png"); tileSet[36].setImage("/Path/Path Tile (TRC).png"); tileSet[37].setImage("/Path/Path Tile (VL).png"); tileSet[38].setImage("/Path/Path Tile (VR).png"); tileSet[39].setImage("/Path/Path Tile (V0).png");
         //O, P, Q, R, S
-        tileSet[40].setImage("/Path/Path Tile (V1).png"); tileSet[41].setImage("/Wall/Stone Wall Tile (BT).png"); tileSet[42].setImage("/Wall/Stone Wall Tile (BLC).png"); tileSet[43].setImage("/Wall/Stone Wall Tile (BRC).png"); tileSet[44].setImage("/Wall/Stone Wall Tile (H).png");
+        tileSet[40].setImage("/Path/Path Tile (V1).png"); tileSet[41].setImage("/Wall/Stone Wall Tile (BE).png"); tileSet[42].setImage("/Wall/Stone Wall Tile (BLC).png"); tileSet[43].setImage("/Wall/Stone Wall Tile (BRC).png"); tileSet[44].setImage("/Wall/Stone Wall Tile (H).png");
         //T, U, V, W, X
-        tileSet[45].setImage("/Wall/Stone Wall Tile (HB).png"); tileSet[46].setImage("/Wall/Stone Wall Tile (HT).png"); tileSet[47].setImage("/Wall/Stone Wall Tile (Inter).png"); tileSet[48].setImage("/Wall/Stone Wall Tile (LT).png"); tileSet[49].setImage("/Wall/Stone Wall Tile (RT).png");
+        tileSet[45].setImage("/Wall/Stone Wall Tile (HB).png"); tileSet[46].setImage("/Wall/Stone Wall Tile (HT).png"); tileSet[47].setImage("/Wall/Stone Wall Tile (Inter).png"); tileSet[48].setImage("/Wall/Stone Wall Tile (LE).png"); tileSet[49].setImage("/Wall/Stone Wall Tile (RE).png");
         //Y, Z, 0, 1, 2
-        tileSet[50].setImage("/Wall/Stone Wall Tile (TT).png"); tileSet[51].setImage("/Wall/Stone Wall Tile (TLC).png"); tileSet[52].setImage("/Wall/Stone Wall Tile (TRC).png"); tileSet[53].setImage("/Wall/Stone Wall Tile (V).png"); tileSet[54].setImage("/Wall/Stone Wall Tile (VL).png");
+        tileSet[50].setImage("/Wall/Stone Wall Tile (TE).png"); tileSet[51].setImage("/Wall/Stone Wall Tile (TLC).png"); tileSet[52].setImage("/Wall/Stone Wall Tile (TRC).png"); tileSet[53].setImage("/Wall/Stone Wall Tile (V).png"); tileSet[54].setImage("/Wall/Stone Wall Tile (VL).png");
         //3, 4, 5, 6, 7
         tileSet[55].setImage("/Wall/Stone Wall Tile (VR).png"); tileSet[56].setImage("/Animated/DarkPortal/Dark Portal Tile Frame 0.png"); tileSet[57].setImage("/Animated/EarthPortal/Earth Portal Tile Frame 0.png"); tileSet[58].setImage("/Animated/FirePortal/Fire Portal Tile Frame 0.png"); tileSet[59].setImage("/Animated/LightningPortal/Lightning Portal Tile Frame 0.png");
         //8, 9, `, ~, !
-        tileSet[60].setImage("/Animated/LightPortal/Light Portal Tile Frame 0.png"); tileSet[61].setImage("/Animated/NaturePortal/Nature Portal Tile Frame 0.png"); tileSet[62].setImage("/Animated/WaterPortal/Water Portal Tile Frame 0.png"); tileSet[63].setImage("/Animated/WindPortal/Wind Portal Tile Frame 0.png"); tileSet[64].setImage("");
+        tileSet[60].setImage("/Animated/LightPortal/Light Portal Tile Frame 0.png"); tileSet[61].setImage("/Animated/NaturePortal/Nature Portal Tile Frame 0.png"); tileSet[62].setImage("/Animated/WaterPortal/Water Portal Tile Frame 0.png"); tileSet[63].setImage("/Animated/WindPortal/Wind Portal Tile Frame 0.png"); tileSet[64].setImage("/Water/Water Tile.png");
         //@, #, $, %, ^
-        tileSet[65].setImage(""); tileSet[66].setImage(""); tileSet[67].setImage(""); tileSet[68].setImage(""); tileSet[69].setImage("");
-        //&, *, (, ), _
-        tileSet[70].setImage(""); tileSet[71].setImage(""); tileSet[72].setImage(""); tileSet[73].setImage(""); tileSet[74].setImage("");
-        //=, +, [, {, ]
-        tileSet[75].setImage(""); tileSet[76].setImage(""); tileSet[77].setImage(""); tileSet[78].setImage(""); tileSet[79].setImage("");
-        //}, \, |, ;, :
+        tileSet[65].setImage("/Transitions/Grass to Water Tiles (BCE).png"); tileSet[66].setImage("/Transitions/Grass to Water Tiles (BL).png"); tileSet[67].setImage("/Transitions/Grass to Water Tiles (BLC).png"); tileSet[68].setImage("/Transitions/Grass to Water Tiles (BR).png"); tileSet[69].setImage("/Transitions/Grass to Water Tiles (BRC).png");
+        //&, *, (, ), -
+        tileSet[70].setImage("/Transitions/Grass to Water Tiles (MLE).png"); tileSet[71].setImage("/Transitions/Grass to Water Tiles (MRE).png"); tileSet[72].setImage("/Transitions/Grass to Water Tiles (TCE).png"); tileSet[73].setImage("/Transitions/Grass to Water Tiles (TL).png"); tileSet[74].setImage("/Transitions/Grass to Water Tiles (TLC).png");
+        //_, =, +, [, {,
+        tileSet[75].setImage("/Transitions/Grass to Water Tiles (TR).png"); tileSet[76].setImage("/Transitions/Grass to Water Tiles (TRC).png"); tileSet[77].setImage(""); tileSet[78].setImage(""); tileSet[79].setImage("");
+        //], }, \, |, ;,
         tileSet[80].setImage(""); tileSet[81].setImage(""); tileSet[82].setImage(""); tileSet[83].setImage(""); tileSet[84].setImage("");
-        //', ", ,, <, .
+        //:, ', ", ,, <,
         tileSet[85].setImage(""); tileSet[86].setImage(""); tileSet[87].setImage(""); tileSet[88].setImage(""); tileSet[89].setImage("");
-        //>, /, ?, ¡, ™
+        //., >, /, ?, ¡,
         tileSet[90].setImage(""); tileSet[91].setImage(""); tileSet[92].setImage(""); tileSet[93].setImage(""); tileSet[94].setImage("");
-        //£, ¢, ∞, §, ¶
+        //™, £, ¢, ∞, §,
         tileSet[95].setImage(""); tileSet[96].setImage(""); tileSet[97].setImage(""); tileSet[98].setImage(""); tileSet[99].setImage("");
+        //¶
+        tileSet[100].setImage("");
         setTileCollision();
     }
 
@@ -115,6 +118,9 @@ public class TileLoader extends Entity {
         tileSet[5].setCollision(true);
         tileSet[27].setCollision(true);
         for (int i = 41; i <= 55; i++){
+            tileSet[i].setCollision(true);
+        }
+        for (int i = 64; i <= 76; i++) {
             tileSet[i].setCollision(true);
         }
     }

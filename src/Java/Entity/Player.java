@@ -11,18 +11,19 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Player extends Entity {
-    private final GUI gPanel;
     private final KeyInput keyInput;
     private final MouseInput mouseInput;
+    private final GUI gPanel;
+
+    private final int screenX;
+    private final int screenY;
     private int keyCount = 0;
     private int hpPotionCount = 0;
     private int mpPotionCount = 0;
     private int lockCounter = 0;
 
-    private final int screenX;
-    private final int screenY;
-
     public Player(GUI gPanel, KeyInput keyInput, MouseInput mouseInput) {
+        super(gPanel);
         this.gPanel = gPanel;
         this.keyInput = keyInput;
         this.mouseInput = mouseInput;
@@ -39,10 +40,16 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        setWorldX((gPanel.getTileL().getMapArray().get(0).length / 2 + 1) * gPanel.getTileSize());
-        setWorldY((gPanel.getTileL().getMapArray().get(0).length / 2 + 1) * gPanel.getTileSize());
+        setWorldX((getgPanel().getTileL().getMapArray().get(0).length / 2 + 1) * getgPanel().getTileSize());
+        setWorldY((getgPanel().getTileL().getMapArray().get(0).length / 2 + 1) * getgPanel().getTileSize());
         velocity = 4;
         input = ("idle left");
+
+        maxHealth = 200;
+        currentHealth = maxHealth;
+        maxMagic = 200;
+        currentMagic = maxMagic;
+
     }
 
     public void getImage() {
@@ -132,8 +139,8 @@ public class Player extends Entity {
         }
 
         collision = false;
-        gPanel.getECollision().tileCollision(this);
-        obtained(gPanel.getECollision().objectCollision(this, true));
+        getgPanel().getECollision().tileCollision(this);
+        obtained(getgPanel().getECollision().objectCollision(this, true));
 
         if (!collision && !mouseInput.isAttack()) {
             switch (input){
@@ -160,6 +167,8 @@ public class Player extends Entity {
                 case ("attack left"), ("attack right") -> {}
             }
         }
+        
+        getgPanel().geteHandler().checkEvent();
 
         spriteCounter ++;
         idleCounter ++;
@@ -180,16 +189,16 @@ public class Player extends Entity {
             else if (idleNum == 1) {idleNum = 0;}
             idleCounter = 0;
         }
-        if (gPanel.getMouseInput().isAttack()) {
+        if (getgPanel().getMouseInput().isAttack()) {
             //attackCounter++;
             if (attackCounter > 16) {
                 if (attackNum == 0) {
                     attackNum = 1;
-                    gPanel.playSoundEffect(2);
+                    getgPanel().playSoundEffect(2);
                 }
                 else if (attackNum == 1) {
                     attackNum = 0;
-                    gPanel.playSoundEffect(3);
+                    getgPanel().playSoundEffect(3);
                 }
                 attackCounter = 0;
             }
@@ -248,7 +257,7 @@ public class Player extends Entity {
             }
 
         }
-        g2D.drawImage(image, screenX, screenY, gPanel.getTileSize(), gPanel.getTileSize(), null);
+        g2D.drawImage(image, screenX, screenY, getgPanel().getTileSize(), getgPanel().getTileSize(), null);
         g2D.setColor(new Color(85, 222, 14, 255));
         if (image == attackL1){
             g2D.draw(new Rectangle(hitBox.x + screenX + 17, hitBox.y + screenY, hitBox.width, hitBox.height));
@@ -300,12 +309,11 @@ public class Player extends Entity {
                     gPanel.getUserI().showMessage("A Magic Potion has been obtained!");
                 }
                 case ("End Flag") -> {
-                    gPanel.getUserI().setGameEnd(true);
+                    gPanel.gameState = gPanel.endState;
                     gPanel.stopAudio();
                     //gPanel.playSoundEffect();
                 }
             }
-
         }
     }
 
@@ -313,7 +321,4 @@ public class Player extends Entity {
     public int getScreenY() {return screenY;}
     public int getWorldX(){return (worldX);}
     public int getWorldY(){return (worldY);}
-    public int getKeyCount() {return keyCount;}
-    public int getHpPotionCount() {return hpPotionCount;}
-    public int getMpPotionCount() {return mpPotionCount;}
 }

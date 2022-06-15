@@ -18,6 +18,10 @@ public class GameObjects extends Entity {
     private int hitBoxDefaultX = 0;
     private int hitBoxDefaultY = 0;
 
+    public GameObjects(GUI gPanel) {
+        super(gPanel);
+    }
+
 
     public void setImage(String image) {
         try {
@@ -42,11 +46,6 @@ public class GameObjects extends Entity {
 
     public void setCollision(boolean collision) {
         this.collision = collision;
-    }
-
-    public void setWorldCords(int worldX, int worldY) {
-        this.worldX = worldX;
-        this.worldY = worldY;
     }
 
     public void draw(Graphics2D g2D, GUI gPanel) {

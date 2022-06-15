@@ -28,6 +28,31 @@ public class KeyInput implements KeyListener {
      */
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
+        if (gPanel.gameState == gPanel.titleState){
+            if (key == KeyEvent.VK_W || key == (KeyEvent.VK_UP)) {
+                gPanel.getUserI().commandNum --;
+                if (gPanel.getUserI().commandNum < 0){
+                    gPanel.getUserI().commandNum = 2;
+                }
+            }
+            if (key == KeyEvent.VK_S || key == (KeyEvent.VK_DOWN)) {
+                gPanel.getUserI().commandNum ++;
+                if (gPanel.getUserI().commandNum > 2){
+                    gPanel.getUserI().commandNum = 0;
+                }
+            }
+            if (key == KeyEvent.VK_ENTER) {
+                switch (gPanel.getUserI().commandNum){
+                    case (0) -> {
+                        gPanel.gameState = gPanel.playState;
+                        gPanel.playAudio(8);
+                    }
+                    case (1) -> {}
+                    case (2) -> System.exit(0);
+                }
+            }
+        }
+
         //Basic Sprite Movement
         if (key == (KeyEvent.VK_W) || key == (KeyEvent.VK_UP)) {
             up = true;
@@ -57,8 +82,14 @@ public class KeyInput implements KeyListener {
 //        if (key == KeyEvent.VK_3) {
 //        }
         if (key == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
+            if (gPanel.gameState == gPanel.playState) {
+                gPanel.gameState = gPanel.pauseState;
+            }
+            else if (gPanel.gameState == gPanel.pauseState) {
+                gPanel.gameState = gPanel.playState;
+            }
         }
+
         if (!gPanel.hasFocus()){
             up = false;
             left = false;

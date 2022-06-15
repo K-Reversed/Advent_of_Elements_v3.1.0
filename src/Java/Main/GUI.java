@@ -29,9 +29,20 @@ public class GUI extends JPanel implements Runnable {
     private Thread thread;
     private final EntityCollision eCollision = new EntityCollision(this);
     private final ObjectLoader objectL = new ObjectLoader(this);
+    private final EventHandler eHandler = new EventHandler(this);
     private final Player player = new Player(this, keyInput, mouseInput);
 
     private final Font miniFont = new Font("Arial", Font.PLAIN, 10);
+
+    //Game State
+    public int gameState;
+    public final int startUpState = 0;
+    public final int titleState = 1;
+    public final int playState = 2;
+    public final int pauseState = 3;
+    public final int dialogueState = 4;
+    public final int endState = 5;
+
 
     /**
      * @updated 2.1.2, 3.1.0
@@ -49,7 +60,9 @@ public class GUI extends JPanel implements Runnable {
 
     public void initiate(){
         objectL.loadObjects();
-        playAudio(4);
+        objectL.loadNPCs();
+        //objectL.loadMonsters();
+        gameState = titleState;
     }
 
     public void start() {
@@ -86,8 +99,11 @@ public class GUI extends JPanel implements Runnable {
     }
 
     public void update() {
-        player.update();
-        tileL.update();
+        if (gameState == playState){
+            player.update();
+            tileL.update();
+        }
+
     }
 
     public void paintComponent(Graphics g) {
@@ -100,18 +116,34 @@ public class GUI extends JPanel implements Runnable {
             drawStart = System.nanoTime();
         }
 
-        tileL.draw(g2D);
+        if (gameState == titleState){
+            userI.draw(g2D);
+        } else {
 
-        for (int i = 0; i < objectL.getGameObjects().length; i++) {
-            if (objectL.getGameObjects()[i] != null) {
-                objectL.getGameObjects()[i].draw(g2D, this);
+            tileL.draw(g2D);
+
+            for (int i = 0; i < objectL.getGameObjects().length; i++) {
+                if (objectL.getGameObjects()[i] != null) {
+                    objectL.getGameObjects()[i].draw(g2D, this);
+                }
             }
+
+            for (int i = 0; i < objectL.getNpc().length; i++) {
+                if (objectL.getNpc()[i] != null) {
+                    objectL.getNpc()[i].draw(g2D);
+                }
+            }
+//
+//            for (int i = 0; i < objectL.getMonster().length; i++) {
+//                if (objectL.getMonster()[i] != null) {
+//                    objectL.getMonster()[i].draw(g2D);
+//                }
+//            }
+
+            player.draw(g2D);
+
+            userI.draw(g2D);
         }
-
-        player.draw(g2D);
-
-        userI.draw(g2D);
-
         long drawEnd = System.nanoTime();
         long passed = drawEnd - drawStart;
 
@@ -170,5 +202,9 @@ public class GUI extends JPanel implements Runnable {
     }
     public UserInterface getUserI() {
         return userI;
+    }
+
+    public EventHandler geteHandler() {
+        return eHandler;
     }
 }

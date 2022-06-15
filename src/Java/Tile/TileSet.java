@@ -14,7 +14,9 @@ public class TileSet {
         try {
             String path = ("/res/png/Tiles/" + image);
             this.image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(path)));
-        } catch (NullPointerException | IOException ignored) {}
+        } catch (NullPointerException | IOException ignored) {
+            System.out.println(image + " was unable to load.");
+        }
     }
     public void setCollision(boolean collision) {this.collision = collision;}
 

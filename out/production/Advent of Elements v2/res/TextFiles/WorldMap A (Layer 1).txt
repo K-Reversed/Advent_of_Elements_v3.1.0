@@ -1,31 +1,31 @@
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f
-f e d d d e e e e e e e e e d d d e e e e e e e e e d d d e f
-f d e 4 e d S S S S S S S d e 5 e d S S S S S S S d e 6 e d f
-f d e J G H G H G H G H G H G E G H G H G H G H G H G K e d f
-f d e O e d S S S S S S S d e O e d S S S S S S S d e O e d f
-f e d N d e e e e e e e e e d N d e e e e e e e e e d N d e f
-f e 1 O 1 e e e e e e e e e 1 O 1 e e e e e e e e e 1 O 1 e f
-f e 1 O 1 e e e e e e e e e 1 O 1 e e e e e e e e e 1 O 1 e f
-f e 1 O 1 e e e e e e e e e e O e e e e e e e e e e 1 O 1 e f
-f e 1 O 1 e e e e e e e e e 1 O 1 e e e e e e e e e 1 O 1 e f
-f e 1 O 1 e e e e e e e e e 1 O 1 e e e e e e e e e 1 O 1 e f
-f e 1 O 1 e e e e e e e e e 1 O 1 e e e e e e e e e 1 O 1 e f
-f e 1 O 1 e e e e e e e e e 1 O 1 e e e e e e e e e 1 O 1 e f
-f e d N d e e e e e e e e e d N d e e e e e e e e e d N d e f
-f d e O e d S S S S S S S d e O e d S S S S S S S d e O e d f
-f d 7 M G H G H G H G H G H G I G H G H G H G H G H G L 8 d f
-f d e O e d S S S S S S S d e O e d S S S S S S S d e O e d f
-f e d N d e e e e e e e e e d N d e e e e e e e e e d N d e f
-f e 1 O 1 e e e e e e e e e 1 O 1 e e e e e e e e e 1 O 1 e f
-f e 1 O 1 e e e e e e e e e 1 O 1 e e e e e e e e e 1 O 1 e f
-f e 1 O 1 e e e e e e e e e 1 O 1 e e e e e e e e e 1 O 1 e f
-f e 1 O 1 e e e e e e e e e 1 O 1 e e e e e e e e e 1 O 1 e f
-f e 1 O 1 e e e e e e e e e e O e e e e e e e e e e 1 O 1 e f
-f e 1 O 1 e e e e e e e e e 1 O 1 e e e e e e e e e 1 O 1 e f
-f e 1 O 1 e e e e e e e e e 1 O 1 e e e e e e e e e 1 O 1 e f
-f e d N d e e e e e e e e e d N d e e e e e e e e e d N d e f
-f d e O e d S S S S S S S d e O e d S S S S S S S d e O e d f
-f d e C G H G H G H G H G H G F G H G H G H G H G H G D e d f
-f d e 9 e d S S S S S S S d e ` e d S S S S S S S d e ~ e d f
-f e d d d e e e e e e e e e d d d e e e e e e e e e d d d e f
-f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f
+e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e  0 - 31
+e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e  0 - 31
+e e e e e e e d e d d d d e e e d d e e e e e e e e e e e e e  0 - 7, 19 - 31
+e e e e e e e e e e e e e e e e e e e e d d e e e e e e e e e  0 - 5, 23 - 31
+e e e e Z S 0 e e e e e e e e e e Z S 0 e e e e e e e e e e e  0 - 4, 27 - 31
+e Z S S 2 7 G G H H G H G H G E G e 8 1 e e e e e e e e e e e  0, 28 - 31 Lock at (7, 6), (18, 6)
+e P d d 3 S R e e e e e e e e N e Q S R e e e e e e e e e e e  0, 30 - 31
+e d d e d d e e e e e e e e e O e e e e e e e e e e e e e e e  0, 30 - 31
+e e e e e d e e e e d e e e e O e e e e Z S 2 e e e e e e e e  0, 30 - 31
+e e e e e e e e e e e e e e e M G H G H H 5 1 e e e e e e e e  0, 30 - 31 Lock at (21, 10)
+e e e e e e e e e e e e e e e O e e e e 3 S 2 e e e Z S 0 e e  0, 30 - 31
+e e e e e e e e e Z S 0 e e e N e e e e 1 4 1 e e e 1 6 1 e e  0, 30 - 31
+e e e e e e e e e 1 ~ G H G H I G K e e Q O R e e e Q O R e e  0 - 1, 30 -31 Lock at (12, 13), (22, 13)
+e e d e d e e e e Q S R e e d N d C H G H D e e e e d N d e e  0 - 1, 29 - 31
+e e d d e e e S S S S S S S e O e d S S S S S S S d e O e e e  0 - 1, 29 - 31
+e e d H G H G E G H G H G H G I G H G H G H G H G H G L e e e  0 - 1, 29 - 31
+e e d d e d 0 O Z S S S S d e O e d S S S S S S S d e O e e e  0 - 1, 29 - 31
+e e d e d e 1 N 1 e e e e e d N d e e e e e e e e e d N d e e  0 - 1, 30 - 31 Lock at (28, 18)
+e e e e e e 1 O 1 e e e e e e O e e e e e e e e e e 1 ` 1 e e  0 - 1, 30 - 31
+e e e e e e d N d e e e d e e N e e e e e e e e e e Q S R e e  0 - 1, 30 - 31 Lock at (8, 20)
+e e e e e d e 9 e d e e e e e O e e e d e e e e e e e e e e e  0 - 1, 27 - 31
+e e e e e d e e e d e e e e e N e e e e e e e d e e e e e e e  0, 27 - 31
+e e e e e e d d d e e e e e e O e e e e e e d e e e e e e e e  0, 27 - 31
+e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e  0, 28 - 31
+e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e  0, 31
+e e e e e e e e e e e e e e e e d e e e e e d e e e d e e e e  0, 29 - 31
+e e e e e d e e e e e e e e e e e e e e e e e e e e e e e e e  0, 28 - 31
+e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e  0 - 7, 28 - 31
+e e e e e e e e e e d d d d e e e d e e e e e e e e e e e e e  0 - 10, 27 - 31
+e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e  0 - 31
+e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e  0 - 31

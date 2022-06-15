@@ -1,7 +1,11 @@
 package Java.Objects;
 
+import Java.Main.GUI;
+
 public class Lock extends GameObjects {
-    public Lock() {
+    public Lock(GUI gPanel) {
+        super(gPanel);
+
         setName("Lock");
         setImage("/Lock.png");
         setCollision(true);
